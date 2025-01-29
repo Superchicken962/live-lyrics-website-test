@@ -1,0 +1,126 @@
+body {
+    background-color: rgb(35,35,35);
+    color: white;
+    font-family: monospace;
+}
+
+.mainContainer {
+    display: block;
+    margin: auto;
+    background-color: rgb(45,45,45);
+    width: 60%;
+    padding: 4px 16px;
+    min-height: 400px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+.mainContainer .text {
+    padding: 2px 18px;
+}
+
+@media screen and (max-width: 850px) {
+    .mainContainer {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .mainContainer {
+        width: 100%;
+        padding: 0;
+        padding-bottom: 10px;
+    }
+}
+
+.songs {
+    display: block;
+    margin: auto;
+    width: 90%;
+    margin-top: 10px;
+}
+
+.songs .song {
+    display: block;
+    margin: auto;
+    color: white;
+    text-decoration: none;
+    background-color: rgb(25,25,25);
+    padding: 6px 24px;
+    border-radius: 5px;
+    font-size: 18px;
+    margin-bottom: 10px;
+    border-left: 4px solid rgb(75,75,75);
+    transition: 0.2s ease-in-out;
+}
+.songs .song:hover {
+    background-color: rgb(20,20,20);
+    border-color: rgb(190,190,190);
+}
+
+.error {
+    display: block;
+    margin: auto;
+    background-color: rgba(220,0,0,0.4);
+    border: 2px solid red;
+    padding: 2px 16px;
+    text-align: center;
+}
+.error:empty {
+    display: none;
+}
+
+.info {
+    font-size: 24px;
+    padding: 0 6px;
+}
+
+.lyrics {
+    display: block;
+    margin: auto;
+    background-color: rgba(255, 165, 0, 0.2);
+    height: 500px;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    position: relative;
+}
+.lyrics .lines {
+    display: block;
+    margin: auto;
+    position: absolute;
+    left:0;right:0;
+    bottom:0;top:0;
+    width: fit-content;
+    height: fit-content;
+    max-height: 100%;
+    width: 100%;
+    overflow-y: auto;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif
+}
+/* TODO: Custom scrollbar. */
+.lyrics .lines .line {
+    display: block;
+    margin: auto;
+    font-size: 42px;
+    margin-top: 10px;
+    color: rgb(180,180,180);
+    transition: 0.15s ease-in-out color;
+}
+.lyrics .lines .line:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+.lyrics .lines .line.played {
+    color: white;
+}
+
+@media screen and (max-width: 450px) {
+    .lyrics .lines .line {
+        font-size: 32px;
+    }
+}
+
+.audio {
+    display: block;
+    width: 100%;
+}
