@@ -104,7 +104,7 @@ body {
     font-size: 42px;
     margin-top: 10px;
     color: rgb(180,180,180);
-    transition: 0.15s ease-in-out color;
+    transition: 0.05s ease-in-out color;
 }
 .lyrics .lines .line:hover {
     text-decoration: underline;

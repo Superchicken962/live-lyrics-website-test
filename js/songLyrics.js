@@ -34,7 +34,15 @@ async function updateSong(songFileName) {
     elements.audio.src = `/data/audio/${songFileName}.${song.extension}`;
 
     elements.audio.ontimeupdate = () => {
+        console.debug("at position", elements.audio.currentTime);
         updateLyrics(song);
+
+        // Experimental - re-enable auto scroll if user leaves scroll near current lyrics. Needs adjustment.
+        // const played = document.querySelectorAll(".line.played");
+            
+        // if (isElementInView(played[played.length-1])) {
+        //     useAutoScroll = true;
+        // }
     }
 
     // Call it here so that the lyrics are shown before playing.
@@ -44,6 +52,8 @@ async function updateSong(songFileName) {
         localStorage.setItem("audioVolume", elements.audio.volume);
     }
 }
+
+let useAutoScroll = true;
 
 /**
  * Updates the lyrics according to the position in the audio.
@@ -59,7 +69,7 @@ function updateLyrics(song) {
         for (const lyric of lyrics) {
             const lyricEl = document.createElement("p");
             lyricEl.className = "line";
-            lyricEl.textContent = formatLyricText(lyric.text);
+            lyricEl.innerHTML = formatLyricText(lyric.text);
             lyricEl.setAttribute("data-at", lyric.at);
 
             // When lyric line is clicked, go to that point in the song.
@@ -71,6 +81,11 @@ function updateLyrics(song) {
             elements.lyricLines.appendChild(lyricEl);
         }
 
+        // Disable auto scroll when user manually scrolls.
+        elements.lyricLines.addEventListener("scroll", () => {
+            useAutoScroll = false;
+        });
+
         return;
     }
 
@@ -79,8 +94,9 @@ function updateLyrics(song) {
         const atPoint = parseInt(lyric.getAttribute("data-at"));
 
         // If lyric has passed "at" time, then add classname to show that. Otherwise remove it.
-        if (elements.audio.currentTime >= atPoint) {
+        if (progress >= atPoint) {
             lyric.classList.add("played");
+            if (useAutoScroll) lyric.scrollIntoView({"block": "center"});
         } else {
             lyric.classList.remove("played");
         }
