@@ -15,12 +15,19 @@ function removeFileExtensions(str) {
  * @param { Number } code - Error code.
  * @param { String } name - Error name.
  * @param { String } message - Error message.
+ * @param { Boolean } inDiv - Return html inside of error div?
  */
-function errorHtml(code, name, message) {
-    return `
+function errorHtml(code, name, message, inDiv) {
+    const html = inDiv ? `
+        <div class="error">
+            <p>Error: ${name}</p>
+            <p>${message}</p>
+        </div>
+    ` : `
         <p>Error: ${name}</p>
         <p>${message}</p>
-    `;
+    `
+    return html;
 }
 
 /**

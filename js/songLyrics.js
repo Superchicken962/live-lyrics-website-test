@@ -10,11 +10,27 @@ const elements = {
     audio: container.querySelector("audio") || document.createElement("audio")
 };
 
+/**
+ * Allow use of gaps in lyrics?
+ */
+const USE_LYRIC_GAPS = true;
+
 async function updateSong(songFileName) {
-    let song;
-    
+    if (!songFileName) {
+        document.querySelector(".mainContainer").innerHTML = errorHtml(404, "Song Not Found!", "Try selecting one from the list!", true);
+        return;
+    }
+
+    let song = await fetch(`/data/songs/${songFileName}.json`);
+
+    if (!song.ok) {
+        document.querySelector(".mainContainer").innerHTML = errorHtml(404, "Song Not Found!", "Try selecting one from the list!", true);
+        return;
+    }
+
+    // Catch errors parsing song (invalid data).
     try {
-        song = await (await fetch(`/data/songs/${songFileName}.json`)).json();
+        song = await song.json();
     } catch (error) {
         elements.error.innerHTML = errorHtml(400, "Failed to parse song info", "Ensure the song data is valid and contains no errors");      
         return;
@@ -25,6 +41,10 @@ async function updateSong(songFileName) {
     if (!song) {
         elements.error.innerHTML = errorHtml(404, "Song Not Found", `The song '${songFileName}' was not found!`);
         return;
+    }
+
+    if (song.colour) {
+        elements.lyrics.style.backgroundColor = `rgba(${song.colour}, 0.2)`;
     }
 
     // Update page details fors song now.
@@ -72,6 +92,10 @@ function updateLyrics(song) {
             lyricEl.innerHTML = formatLyricText(lyric.text);
             lyricEl.setAttribute("data-at", lyric.at);
 
+            if (lyric.includeGap && USE_LYRIC_GAPS) {
+                lyricEl.classList.add("gap");
+            }
+
             // When lyric line is clicked, go to that point in the song.
             lyricEl.onclick = () => {
                 elements.audio.currentTime = lyric.at;
@@ -101,6 +125,22 @@ function updateLyrics(song) {
             lyric.classList.remove("played");
         }
     }
+}
+
+/**
+ * Gets the length of the longest/largest lyric in the song.
+ *
+ * @param { Object[] } lyrics - Song lyrics. 
+ * @returns { Number } Length of lyric.
+ */
+function getLongestLyric(lyrics) {
+    let maxLength = 0;
+
+    for (const lyric of lyrics) {
+        maxLength = Math.max(lyric.text.length, maxLength);
+    }
+
+    return maxLength;
 }
 
 const presetVolume = localStorage.getItem("audioVolume");

@@ -95,7 +95,7 @@ body {
     width: 100%;
     overflow-y: auto;
     text-align: center;
-    font-family: Verdana, Geneva, Tahoma, sans-serif
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 /* TODO: Custom scrollbar. */
 .lyrics .lines .line {
@@ -105,6 +105,9 @@ body {
     margin-top: 10px;
     color: rgb(180,180,180);
     transition: 0.05s ease-in-out color;
+}
+.lyrics .lines .line.gap {
+    margin-bottom: 50px;
 }
 .lyrics .lines .line:hover {
     text-decoration: underline;

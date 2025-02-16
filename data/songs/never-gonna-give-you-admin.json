@@ -1,0 +1,72 @@
+{
+    "name": "Never Gonna Give You Admin",
+    "author": "Mr. Venom",
+    "filename": "never-gonna-give-you-admin",
+    "extension": "mp3",
+    "colour": "30,100,20",
+    "lyrics": [
+        { "text": "We're no strangers to baby gamers", "at": 18.9 },
+        { "text": "You know the rules and so do I", "at": 22.9 },
+        { "text": "A full commitment's what I'm thinkin' of", "at": 27.2 },
+        { "text": "You wouldn't get this from any other admin", "at": 31.5 },
+        { "text": "I just wanna tell you shutup", "at": 35.5 },
+        { "text": "Gotta make you fuck off", "at": 40.6, "includeGap": true },
+
+        { "text": "Never gonna give you admin", "at": 43.4 },
+        { "text": "Never gonna let you ban me", "at": 45.5 },
+        { "text": "Never gonna run around and be right back", "at": 47.6 },
+        { "text": "Never gonna make you cry about it", "at": 51.8 },
+        { "text": "Never gonna say nigger", "at": 54 },
+        { "text": "Never gonna tell a lie and cut ya balls off", "at": 56, "includeGap": true },
+
+        { "text": "We've known SCP for so long", "at": 61 },
+        { "text": "Your internet been aching, but you're too gay to say it", "at": 65.2 },
+        { "text": "Inside, we both know what's been going on", "at": 69.65 },
+        { "text": "We know the game and we're gonna play it", "at": 73.6 },
+        { "text": "And if you ask me how I'm funny", "at": 77.8 },
+        { "text": "Don't tell me you're too stewpid", "at": 82.8, "includeGap": true },
+
+        { "text": "Never gonna give you admin", "at": 85.6 },
+        { "text": "Never gonna let you ban me", "at": 87.7 },
+        { "text": "Never gonna run around and be right back", "at": 89.95 },
+        { "text": "Never gonna make you cry about it", "at": 94.2 },
+        { "text": "Never gonna say nigger", "at": 96.3 },
+        { "text": "Never gonna tell a lie and cut ya balls off", "at": 98.4, "includeGap": true },
+
+        { "text": "Never gonna give you admin", "at": 102.6 },
+        { "text": "Never gonna let you ban me", "at": 104.75 },
+        { "text": "Never gonna run around and be right back", "at": 106.9 },
+        { "text": "Never gonna make you cry about it", "at": 111.1 },
+        { "text": "Never gonna say nigger", "at": 113.2 },
+        { "text": "Never gonna tell a lie and cut ya balls off", "at": 115.3, "includeGap": true },
+
+        { "text": "We've known SCP for so long", "at": 137.3 },
+        { "text": "Your internet been aching, but you're too gay to say it", "at": 141.4 },
+        { "text": "Inside, we both know what's been going on", "at": 145.8 },
+        { "text": "We know the game and we're gonna play it", "at": 150.1 },
+        { "text": "I just wanna tell you shutup", "at": 154 },
+        { "text": "Gotta make you fuck off", "at": 159.2, "includeGap": true },
+
+        { "text": "Never gonna give you admin", "at": 161.9 },
+        { "text": "Never gonna let you ban me", "at": 164 },
+        { "text": "Never gonna run around and be right back", "at": 166.1 },
+        { "text": "Never gonna make you cry about it", "at": 170.3 },
+        { "text": "Never gonna say nigger", "at": 172.45 },
+        { "text": "Never gonna tell a lie and cut ya balls off", "at": 174.6, "includeGap": true },
+
+        { "text": "Never gonna give you admin", "at": 178.85 },
+        { "text": "Never gonna let you ban me", "at": 181 },
+        { "text": "Never gonna run around and be right back", "at": 183.1 },
+        { "text": "Never gonna make you cry about it", "at": 187.3 },
+        { "text": "Never gonna say nigger", "at": 189.5 },
+        { "text": "Never gonna tell a lie and cut ya balls off", "at": 191.4, "includeGap": true },
+
+        { "text": "Never gonna give you admin", "at": 195.7 },
+        { "text": "Never gonna let you ban me", "at": 197.9 },
+        { "text": "Never gonna run around and be right back", "at": 200 },
+        { "text": "Never gonna make you cry about it", "at": 204.3 },
+        { "text": "Never gonna say nigger", "at": 206.4 },
+        { "text": "Never gonna tell a lie and cut ya balls off", "at": 208.45, "includeGap": true }
+
+    ]
+}
