@@ -43,9 +43,7 @@ async function updateSong(songFileName) {
         return;
     }
 
-    if (song.colour) {
-        elements.lyrics.style.backgroundColor = `rgba(${song.colour}, 0.2)`;
-    }
+    elements.lyrics.style.backgroundColor = `rgba(${song.colour ?? "255, 165, 0"}, 0.2)`;
 
     // Update page details fors song now.
     elements.songAuthor.textContent = song.author;
@@ -74,6 +72,8 @@ async function updateSong(songFileName) {
 }
 
 let useAutoScroll = true;
+let ignoringFromAutoScroll = false;
+const USE_SMOOTH_SCROLL = true;
 
 /**
  * Updates the lyrics according to the position in the audio.
@@ -107,6 +107,18 @@ function updateLyrics(song) {
 
         // Disable auto scroll when user manually scrolls.
         elements.lyricLines.addEventListener("scroll", () => {
+            // Ignore non-user scroll.
+            if (ignoringFromAutoScroll) {
+                
+                // If using smooth scroll, wait 0.3s before changing var, otherwise do not wait.
+                let ms = USE_SMOOTH_SCROLL ? 300 : 0;
+
+                setTimeout(() => {
+                    ignoringFromAutoScroll = false;
+                }, ms);
+                return;
+            }
+
             useAutoScroll = false;
         });
 
@@ -120,7 +132,12 @@ function updateLyrics(song) {
         // If lyric has passed "at" time, then add classname to show that. Otherwise remove it.
         if (progress >= atPoint) {
             lyric.classList.add("played");
-            if (useAutoScroll) lyric.scrollIntoView({"block": "center"});
+            
+            if (useAutoScroll) {
+                // Set this to true to tell scroll listener that this was automatic, and to not disable autoscroll.
+                ignoringFromAutoScroll = true;
+                lyric.scrollIntoView({"block": "center", "behavior": USE_SMOOTH_SCROLL ? "smooth" : "instant" })
+            }
         } else {
             lyric.classList.remove("played");
         }

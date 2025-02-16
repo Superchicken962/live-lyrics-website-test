@@ -3,6 +3,7 @@
     "author": "Mr. Venom",
     "filename": "losing-my-admin",
     "extension": "mp3",
+    "colour": "255, 165, 0",
     "lyrics": [
         { "text": "Oh, no, is bigger", "at": 14 },
         { "text": "It's bigger than you", "at": 20 },
