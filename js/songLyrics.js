@@ -91,6 +91,8 @@ function updateLyrics(song) {
             lyricEl.className = "line";
             lyricEl.innerHTML = formatLyricText(lyric.text);
             lyricEl.setAttribute("data-at", lyric.at);
+            // Keep uncensored text as attribute so censor can be removed in real time later.
+            lyricEl.setAttribute("uncensored", lyric.text);
 
             if (lyric.includeGap && USE_LYRIC_GAPS) {
                 lyricEl.classList.add("gap");
@@ -158,6 +160,55 @@ function getLongestLyric(lyrics) {
     }
 
     return maxLength;
+}
+
+function initOptions() {
+    const options = document.querySelector(".options");
+
+    const expander = options.querySelector(".expandText");
+    const content = options.querySelector(".content");
+
+    function expand() {
+        expander.textContent = "v Options";
+        content.style.maxHeight = content.scrollHeight + "px";
+        // Save option to localStorage so it saves when reloading.
+        localStorage.setItem("optionsExpanded", true);
+    }
+
+    // Start options expanded if it was expanded before reloading.
+    if (localStorage.getItem("optionsExpanded") == "true") expand();
+
+    expander.onclick = function() {
+        if (!content.style.maxHeight) {
+            expand();
+        } else {
+            expander.textContent = "> Options";
+            content.style.maxHeight = null;
+            localStorage.removeItem("optionsExpanded");
+        }
+    }
+
+    const enableCensor = options.querySelector("#enableCensor");
+    enableCensor.checked = localStorage.getItem("uncensored") != "true";
+
+    enableCensor.oninput = () => {
+        localStorage.setItem("uncensored", !enableCensor.checked);
+        changeLyricsCensor(enableCensor.checked);
+    }
+}
+initOptions();
+
+function changeLyricsCensor(censored = false) {
+    const existingLyrics = elements.lyricLines.querySelectorAll(".line");
+
+    for (const lyric of existingLyrics) {
+        if (censored) {
+            if (!lyric.textContent) continue;
+            lyric.innerHTML = formatLyricText(lyric.textContent);
+        } else {
+            lyric.innerHTML = formatLyricText(lyric.getAttribute("uncensored"));
+        }
+    }
 }
 
 const presetVolume = localStorage.getItem("audioVolume");
